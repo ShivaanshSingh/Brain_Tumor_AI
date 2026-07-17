@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BrainTumorAI Monorepo
 
-## Getting Started
+Empowering healthcare professionals with state-of-the-art AI-powered MRI analysis for brain tumor detection, classification, and segmentation.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🏗️ Repository Architecture
+
+The project has been organized into a clean monorepo structure to isolate the Next.js TypeScript web application and the Python Flask deep learning API.
+
+```
+/ (Root)
+├── frontend/             # Next.js web application
+│   ├── src/              # React frontend components & pages
+│   ├── public/           # Static assets (icons, images)
+│   ├── package.json      # Frontend package configuration
+│   ├── tsconfig.json     # TypeScript configuration
+│   └── ...
+├── backend/              # Python Flask API
+│   ├── app.py            # Flask API entry point
+│   ├── predict.py        # ML prediction & Grad-CAM pipeline
+│   ├── gradcam.py        # Grad-CAM heatmap generation
+│   ├── segmentation.py   # OpenCV contour segmentation
+│   ├── requirements.txt  # Python requirements
+│   └── model/            # CNN Model weights (.keras)
+├── scripts/              # Cross-platform orchestrator scripts (TS)
+├── package.json          # Root scripts to run both apps & dev dependencies
+├── tsconfig.json         # Workspace TypeScript configurations
+└── README.md             # Monorepo setup guide
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Technology Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Frontend
+- **Framework**: [Next.js](https://nextjs.org/) (App Router, React 19)
+- **Language**: TypeScript (fully typed models & APIs)
+- **Database**: MongoDB (via Mongoose)
+- **Authentication**: Firebase Authentication
+- **Icons**: Lucide React
+- **Styling**: Tailwind CSS
 
-## Learn More
+### Backend
+- **Framework**: Flask (with Flask-CORS)
+- **Language**: Python 3.12+
+- **Deep Learning**: TensorFlow / Keras (CNN model)
+- **Computer Vision**: OpenCV (image processing & contour segmentation)
+- **Visualization**: Matplotlib (Grad-CAM heatmaps)
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Follow these steps to set up and run the project locally.
 
-## Deploy on Vercel
+### 📋 Prerequisites
+- **Node.js** (v18 or higher)
+- **Python** (v3.10 or higher)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 1. Setup & Installation
+
+First, run a quick install in the root directory to set up editor/VS Code types:
+```bash
+npm install
+```
+
+Then, install the dependencies for frontend and backend:
+
+#### Frontend Setup
+```bash
+npm run install:frontend
+```
+
+#### Backend Setup
+This creates a virtual environment and installs the required packages:
+```bash
+npm run install:backend
+```
+
+---
+
+### 2. Configure Environment Variables
+
+1. Go to the `frontend/` directory.
+2. Copy `.env.example` to `.env.local`:
+   ```bash
+   cp .env.example .env.local
+   ```
+3. Open `frontend/.env.local` and add your **Firebase Config** credentials and **MongoDB connection URI**.
+4. The Python backend URL is pre-configured to `http://127.0.0.1:5000`.
+
+---
+
+### 3. Running the Application
+
+You can start both servers from the root of the project using separate terminal windows.
+
+#### Start the Next.js Frontend
+```bash
+npm run dev:frontend
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+#### Start the Python Flask Backend
+```bash
+npm run dev:backend
+```
+The API will run on [http://127.0.0.1:5000](http://127.0.0.1:5000).
+
+---
+
+## 🤖 AI Model Features
+1. **Tumor Classification**: Classifies MRI scans into 4 types: `Glioma`, `Meningioma`, `Pituitary`, or `No Tumor`.
+2. **Grad-CAM Visualizations**: Generates heatmaps indicating the visual features on which the CNN model focused its attention.
+3. **Contour Segmentation**: Extracts and overlays contours to outline the shape, width, height, and surface area of the tumor.
+4. **Severity Scoring**: Analyzes the calculated area of the segmented tumor to rate severity (`None`, `Low`, `Medium`, `High`, `Needs Review`).

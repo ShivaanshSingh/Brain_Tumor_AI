@@ -1,31 +1,19 @@
 {
-  "name": "bta",
-  "version": "0.1.0",
+  "name": "brain-tumor-ai-monorepo",
+  "version": "1.0.0",
+  "description": "Brain Tumor Detection AI Web App using Next.js & Python Flask",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "firebase": "^12.14.0",
-    "lucide-react": "^1.21.0",
-    "mongoose": "^9.7.1",
-    "next": "16.2.9",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-icons": "^5.6.0"
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "npx tsx scripts/backend.ts install",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "npx tsx scripts/backend.ts dev",
+    "build:frontend": "cd frontend && npm run build",
+    "start:frontend": "cd frontend && npm run start",
+    "lint:frontend": "cd frontend && npm run lint"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.9",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@types/node": "^20.14.9",
+    "typescript": "^5.5.2"
   }
 }

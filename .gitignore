@@ -1,69 +1,46 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
+# Monorepo Dependency Directories
+node_modules/
+frontend/node_modules/
+.pnp
 .pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
 
-# testing
+# Next.js Build Directories
+frontend/.next/
+frontend/out/
 /coverage
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-!.env.example
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# python virtual environment
+# Python Virtual Environments
+backend/venv/
+backend/env/
+backend/.venv/
 venv/
-env/
 .venv/
 
-# python cache
+# Python Cache Directories
 __pycache__/
+backend/__pycache__/
 *.pyc
 *.pyo
 
-# jupyter
+# IDE Configuration
+.vscode/
+.DS_Store
+*.pem
+Thumbs.db
 .ipynb_checkpoints
 
-# logs
+# Log files
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# OS files
-Thumbs.db
-
-# IDE settings
-.vscode/
+# Environment Variables
+.env*
+frontend/.env*
+!frontend/.env.example
 
 # Python backend dynamic outputs
-python-backend/heatmaps/
-python-backend/segmentations/
-python-backend/uploads/
+backend/heatmaps/
+backend/segmentations/
+backend/uploads/
